@@ -22,7 +22,3 @@ We want Telugu Keyboard to be a respectful project for Telugu speakers, develope
 Maintainers may edit, hide, close, or remove comments, issues, pull requests, or contributors that violate this code. Serious or repeated violations may lead to a ban from project spaces.
 
 Report conduct concerns privately to the project maintainer.
-
-## Attribution
-
-This code is inspired by the Contributor Covenant, adapted for this project.
