@@ -8,7 +8,7 @@ Security fixes are provided for the latest public release. Older releases may re
 
 Please do not open a public issue for a vulnerability that could put users at risk.
 
-Report privately through GitHub Security Advisories once the repository is public. Include:
+Report privately through GitHub Security Advisories. Include:
 
 - a short summary;
 - affected version or commit;

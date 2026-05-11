@@ -6,7 +6,6 @@ We want Telugu Keyboard to be a respectful project for Telugu speakers, develope
 
 ## Expected Behavior
 
-- Be respectful of different Telugu dialects, spelling habits, and typing habits.
 - Discuss corrections with examples and evidence.
 - Keep feedback focused on the issue or pull request.
 - Help new contributors understand the project standards.
