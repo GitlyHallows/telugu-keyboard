@@ -1,0 +1,51 @@
+# id	roman	expected	category	generalization	status	notes
+C001	ilaa	ఇలా	candidate-ranking-feature	long-vowel-aa-split	ranking-implemented	Demote meaningless vowel splits such as ఇలఅ below long-vowel forms.
+C002	ilaage	ఇలాగే	exact-common-word	none	exact-only	Common chat lexical item confirmed by user.
+C003	parledu	పర్లేదు	exact-common-word	none	exact-only	Common conversational spelling.
+C004	thindi	తిండి	exact-common-word	none	exact-only	Common food word; exact correction is safer than a broad n+d nasal rule.
+C005	potunattlu	పొతున్నట్లు	exact-common-word	none	exact-only	User confirmed this conversational spelling.
+C006	pothunatlu	పొతున్నట్లు	exact-common-word	none	exact-only	User confirmed this conversational spelling.
+C007	entasepu	ఎంతసేపు	exact-common-word	compound-word	exact-only	Single-word compound should beat literal per-syllable output.
+C008	inthena	ఇంతేనా	exact-common-word	none	exact-only	Common conversational question form.
+C009	vasthundo	వస్తుందో	generalized-suffix-pattern	final-do-to-doo	pattern-implemented	Final roman do often means దో in common chat.
+C010	pothundo	పోతుందో	generalized-suffix-pattern	final-do-to-doo	pattern-implemented	Final roman do often means దో in common chat.
+C011	ko	కో	generalized-suffix-pattern	final-ko-to-koo	pattern-implemented	Common imperative/reflexive ending.
+C012	paduko	పడుకో	generalized-suffix-pattern	final-ko-to-koo	pattern-implemented	Stem plus కో pattern, with curated exact row for ranking.
+C013	veltunnavo	వెళ్తున్నావో	generalized-suffix-pattern	tunnavo-family	pattern-implemented	Common spoken -tunnavo/-thunnavo family.
+C014	lekunna	లేకున్నా	generalized-suffix-pattern	final-nna-to-nnaa	pattern-implemented	Final nna commonly maps to న్నా in this class.
+C015	lekapoina	లేకపోయినా	generalized-suffix-pattern	final-poina-after-stem	pattern-implemented	Stem + poina often means పోయినా.
+C016	poina	పోయిన	generalized-suffix-pattern	bare-poina-order	pattern-implemented	Bare poina defaults to పోయిన while still offering పోయినా.
+C017	elagaina	ఎలాగైనా	generalized-suffix-pattern	final-gaina-to-gainaa	pattern-implemented	Common -గైనా ending.
+C018	ivvana	ఇవ్వనా	exact-common-word	none	exact-only	Common verb form; broad vvana rules need more data.
+C019	isthunna	ఇస్తున్నా	generalized-suffix-pattern	final-unna-to-unnaa	pattern-implemented	Stem + unna pattern.
+C020	ichana	ఇచ్చిన	candidate-ranking-feature	context-sensitive-ina-vs-inaa	ranking-implemented	Before vadiki, ఇచ్చిన should beat ఇచ్చినా.
+C021	ichi	ఇచ్చి	candidate-ranking-feature	short-vowel-chi-gemination	ranking-implemented	Geminated చ్చి is the useful default; literal ఇచి remains selectable.
+C022	pichi	పిచ్చి	candidate-ranking-feature	short-vowel-chi-gemination	ranking-implemented	Geminated చ్చి is the useful default; literal పిచి remains selectable.
+C023	pachi	పచ్చి	candidate-ranking-feature	short-vowel-chi-gemination	ranking-implemented	Geminated చ్చి is the useful default.
+C024	puchukunte	పుచ్చుకుంటే	exact-common-word	verb-family-pucchu	exact-only	Verb-family correction; unsafe to broaden without more examples.
+C025	nake	నాకే	generalized-suffix-pattern	dative-pronoun-emphatic-e	pattern-implemented	na/naa + ke maps to emphatic నాకే.
+C026	naake	నాకే	generalized-suffix-pattern	dative-pronoun-emphatic-e	pattern-implemented	na/naa + ke maps to emphatic నాకే.
+C027	explicit-selection	-	local-user-learning-case	local-learning	local-runtime	Explicit candidate selections are learned locally and should outrank defaults.
+C028	parledu	పర్లేదు	local-user-learning-case	provisional-explicit-selection	local-runtime	One accidental explicit learned selection must not outrank a high-confidence curated correction.
+C029	vachadu	వచ్చాడు	exact-common-word	verb-family-vacchu	exact-only	Common వచ్చు past-masculine form; exact variants are safer than a broad chadu rule.
+C030	vachaadu	వచ్చాడు	exact-common-word	verb-family-vacchu	exact-only	Long-vowel Roman variant of vachadu.
+C031	vacchadu	వచ్చాడు	exact-common-word	verb-family-vacchu	exact-only	Double-c Roman variant of vachadu.
+C032	vacchaadu	వచ్చాడు	exact-common-word	verb-family-vacchu	exact-only	Double-c plus long-vowel Roman variant of vachadu.
+C033	ichindi	ఇచ్చింది	candidate-ranking-feature	chindi-gemination	ranking-implemented	Bounded i+chindi pattern should prefer ఇచ్చింది over literal ఇచింది.
+C034	icchindi	ఇచ్చింది	candidate-ranking-feature	chindi-gemination	ranking-implemented	Bounded i+cchindi pattern should prefer ఇచ్చింది.
+C035	puchindi	పుచ్చింది	candidate-ranking-feature	chindi-gemination	ranking-implemented	Bounded pu+chindi pattern should prefer పుచ్చింది over literal పుచింది.
+C036	pucchindi	పుచ్చింది	candidate-ranking-feature	chindi-gemination	ranking-implemented	Bounded pu+cchindi pattern should prefer పుచ్చింది.
+C037	eppudoo	ఎప్పుడూ	generalized-suffix-pattern	ppudu-retroflex-du	ranking-implemented	Common ppudoo words should prefer డూ over దూ.
+C038	appudoo	అప్పుడూ	generalized-suffix-pattern	ppudu-retroflex-du	ranking-implemented	Common ppudoo words should prefer డూ over దూ.
+C039	yellappudu	యెల్లప్పుడూ	exact-common-word	yellappudu-spelling	exact-only	User selected యెల్లప్పుడూ over యెల్లప్పుదూ.
+C040	yellappudoo	యెల్లప్పుడూ	exact-common-word	yellappudu-spelling	exact-only	User selected యెల్లప్పుడూ over యెల్లప్పుదూ.
+C041	alane	అలానే	exact-common-word	none	exact-only	Companion common-chat word needed for yellappudoo alane phrase.
+C042	alaane	అలానే	exact-common-word	none	exact-only	Long-vowel Roman variant of alane.
+C043	kooda	కూడా	exact-common-word	common-particle	exact-only	Common particle; exact mapping avoids broad d/డ changes.
+C044	koodaa	కూడా	exact-common-word	common-particle	exact-only	Long-vowel Roman variant of kooda.
+C045	pada	పద	exact-common-word	seed-correction	exact-only	Lowercase pada should default to పద; padaku/paduko remain separate curated forms.
+C046	padaa	పదా	candidate-ranking-feature	long-a-plus-base-option	ranking-implemented	Extra a signals దీర్ఘం, while పద remains the next correction option.
+C047	ichanu	ఇచ్చాను	candidate-ranking-feature	chaanu-gemination	ranking-implemented	Bounded i+chanu pattern should prefer ఇచ్చాను over literal ఇచను.
+C048	ichaanu	ఇచ్చాను	candidate-ranking-feature	chaanu-gemination	ranking-implemented	Bounded i+chaanu pattern should prefer ఇచ్చాను over literal ఇచాను.
+C049	icchanu	ఇచ్చాను	candidate-ranking-feature	chaanu-gemination	ranking-implemented	Bounded i+cchanu pattern should prefer ఇచ్చాను.
+C050	icchaanu	ఇచ్చాను	candidate-ranking-feature	chaanu-gemination	ranking-implemented	Bounded i+cchaanu pattern should prefer ఇచ్చాను.

@@ -1,0 +1,50 @@
+name: Install problem
+description: Report trouble installing or selecting Telugu Keyboard on macOS
+title: "[Install] "
+labels: ["install"]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Telugu Keyboard version
+      placeholder: "Example: 0.1.0"
+    validations:
+      required: true
+  - type: input
+    id: macos
+    attributes:
+      label: macOS version
+      placeholder: "Example: macOS 15.2"
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: What happened?
+      description: List the steps you followed and what you saw.
+      placeholder: |
+        1. Opened installer
+        2. Allowed permission
+        3. Pressed fn/globe
+        4. Telugu Keyboard did not appear
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+      placeholder: "Example: Telugu Keyboard should appear in the input source menu."
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: Screenshots of the permission prompt or input-source menu are useful.
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I checked System Settings -> Keyboard -> Text Input -> Input Sources.
+          required: true

@@ -1,0 +1,57 @@
+name: Wrong transliteration
+description: Report a Roman Telugu input that produces the wrong Telugu output
+title: "[Transliteration] "
+labels: ["transliteration"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please search existing issues first. Real sentence context helps us fix ranking without breaking other words.
+  - type: input
+    id: roman
+    attributes:
+      label: What did you type?
+      placeholder: "Example: em chestunnav"
+    validations:
+      required: true
+  - type: input
+    id: actual
+    attributes:
+      label: What did Telugu Keyboard produce?
+      placeholder: "Example: ఎం చెస్తున్నవ్"
+    validations:
+      required: true
+  - type: input
+    id: expected
+    attributes:
+      label: What should it produce?
+      placeholder: "Example: ఏం చేస్తున్నావ్"
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Sentence context
+      description: Add the full sentence if the correct output depends on nearby words.
+      placeholder: "Example: em chestunnav ippudu"
+  - type: textarea
+    id: candidates
+    attributes:
+      label: Candidate list or screenshot
+      description: If possible, paste the candidate list or attach a screenshot.
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      placeholder: "Example: 0.1.0"
+    validations:
+      required: true
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I searched existing issues for this word or phrase.
+          required: true
+        - label: I included the Telugu spelling I expect.
+          required: true

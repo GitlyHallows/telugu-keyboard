@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleExecutable</key>
+	<string>TeluguKeyboard</string>
+	<key>CFBundleIdentifier</key>
+	<string>org.telugukeyboard.inputmethod.TeluguKeyboard</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>Telugu Keyboard</string>
+	<key>CFBundleDisplayName</key>
+	<string>Telugu Keyboard</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleSupportedPlatforms</key>
+	<array>
+		<string>MacOSX</string>
+	</array>
+	<key>CFBundleShortVersionString</key>
+	<string>0.1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>InputMethodConnectionName</key>
+	<string>TeluguInputController_Connection</string>
+	<key>InputMethodServerControllerClass</key>
+	<string>TeluguInputController</string>
+	<key>InputMethodServerDelegateClass</key>
+	<string>TeluguInputController</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.utilities</string>
+	<key>LSBackgroundOnly</key>
+	<true/>
+	<key>LSMinimumSystemVersion</key>
+	<string>14.0</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright © 2026 Telugu Keyboard contributors.</string>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+	<key>tsInputMethodCharacterRepertoireKey</key>
+	<array>
+		<string>Telu</string>
+	</array>
+</dict>
+</plist>
