@@ -4,14 +4,3 @@ dist/
 DerivedData/
 *.xcuserstate
 .DS_Store
-
-# Private local notes and generated review outputs.
-docs/PROJECT_REQUIREMENTS.md
-*.local.md
-*.notes.md
-local/
-*.state.json
-*.easy-review.tsv
-*.review.tsv
-data/*review-output*.tsv
-data/*review-local*.tsv
