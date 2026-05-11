@@ -9,7 +9,7 @@ Telugu deserves Telugu script.
 
 Many Telugu speakers type Telugu in English letters because laptop keyboards make it feel easier: `telusu`, `bagunnava`, `em chestunnav`. But Roman Telugu is not Telugu writing, and it is not good English either. The English-looking word `telusu` does not naturally carry the sound or dignity of `తెలుసు`; readers have to mentally translate it back into Telugu before it makes sense.
 
-Telugu Keyboard keeps the familiar English keyboard, but writes Telugu in real Telugu script. Type common Roman Telugu and the keyboard ranks Telugu candidates locally on your Mac:
+Telugu Keyboard lets you use a simple English keyboard to write Telugu in real Telugu script. Type common Roman Telugu and the keyboard ranks Telugu candidates locally on your Mac:
 
 | Type | Get |
 | --- | --- |
