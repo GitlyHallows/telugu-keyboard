@@ -5,22 +5,11 @@ DerivedData/
 *.xcuserstate
 .DS_Store
 
-# Internal planning and local workspace context. These are useful while building
-# the project, but they are not part of the public open-source repo.
-AGENTS.md
+# Private local notes and generated review outputs.
 docs/PROJECT_REQUIREMENTS.md
-.codex/
-.agents/
-.roo/
-.cursor/
-.claude/
 *.local.md
 *.notes.md
 local/
-
-# Browser automation state and generated review outputs.
-.agent-browser/
-auth.json
 *.state.json
 *.easy-review.tsv
 *.review.tsv
