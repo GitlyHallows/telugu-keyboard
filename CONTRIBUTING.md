@@ -77,7 +77,7 @@ Before marking a PR ready for review:
 
 ## Maintainer Review
 
-The `main` branch should require:
+The `master` branch should require:
 
 - `Telugu Keyboard CI / Swift regression suite`;
 - at least one approval;

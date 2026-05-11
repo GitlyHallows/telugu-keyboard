@@ -7,7 +7,7 @@ Use this checklist before announcing Telugu Keyboard to non-technical users.
 - The public repository is initialized from the project directory only, not from any parent workspace.
 - Internal planning and local workspace-context files listed in `.gitignore` are ignored.
 - `README.md`, `CONTRIBUTING.md`, issue templates, PR template, license, notices, and security policy are present.
-- GitHub `main` is protected by a ruleset or branch protection rule.
+- GitHub `master` is protected by a ruleset or branch protection rule.
 
 ## CI And Review Gate
 
@@ -15,7 +15,7 @@ Use this checklist before announcing Telugu Keyboard to non-technical users.
 - At least one approving review is required.
 - Code-owner review is required.
 - Stale approvals are dismissed when new commits are pushed.
-- Direct pushes to `main` are blocked.
+- Direct pushes to `master` are blocked.
 
 ## Signing Prerequisites
 
