@@ -7,12 +7,30 @@ struct DemoToken {
     let roman: String
     let telugu: String
     let delimiter: String
+    let candidates: [String]
+    let selectedCandidateIndex: Int
+
+    init(
+        roman: String,
+        telugu: String,
+        delimiter: String,
+        candidates: [String]? = nil,
+        selectedCandidateIndex: Int = 0
+    ) {
+        self.roman = roman
+        self.telugu = telugu
+        self.delimiter = delimiter
+        self.candidates = candidates ?? [telugu]
+        self.selectedCandidateIndex = selectedCandidateIndex
+    }
 }
 
 struct FrameState {
     let committed: String
     let composing: String
     let candidate: String
+    let candidates: [String]
+    let selectedCandidateIndex: Int
     let romanProgress: String
     let showCandidates: Bool
 }
@@ -20,25 +38,16 @@ struct FrameState {
 let tokens = [
     DemoToken(roman: "ela", telugu: "ఎలా", delimiter: " "),
     DemoToken(roman: "unnav", telugu: "ఉన్నావ్", delimiter: "? "),
+    DemoToken(roman: "telusu", telugu: "తెలుసు", delimiter: " "),
+    DemoToken(roman: "kada", telugu: "కదా", delimiter: "? ", candidates: ["కద", "కదా"], selectedCandidateIndex: 1),
     DemoToken(roman: "em", telugu: "ఏం", delimiter: " "),
     DemoToken(roman: "chestunnav", telugu: "చేస్తున్నావ్", delimiter: "? "),
-    DemoToken(roman: "bagundi", telugu: "బాగుంది", delimiter: " "),
-    DemoToken(roman: "kani", telugu: "కానీ", delimiter: " "),
-    DemoToken(roman: "ilaa", telugu: "ఇలా", delimiter: " "),
-    DemoToken(roman: "kaadu", telugu: "కాదు", delimiter: "."),
+    DemoToken(roman: "poinaa", telugu: "పోయినా", delimiter: " "),
+    DemoToken(roman: "sare", telugu: "సరే", delimiter: " "),
+    DemoToken(roman: "parledu", telugu: "పర్లేదు", delimiter: "."),
 ]
 
-let romanSentence = tokens.map(\.roman).enumerated().map { index, token in
-    switch index {
-    case 1, 3:
-        return token + "?"
-    case 7:
-        return token + "."
-    default:
-        return token
-    }
-}.joined(separator: " ")
-
+let romanSentence = tokens.map { $0.roman + $0.delimiter }.joined()
 let teluguSentence = tokens.map { $0.telugu + $0.delimiter }.joined()
 let width = 1280
 let height = 720
@@ -81,9 +90,20 @@ func drawText(_ text: String, at point: NSPoint, font: NSFont, color: NSColor, a
 }
 
 func drawText(_ text: String, in rect: NSRect, font: NSFont, color: NSColor, alignment: NSTextAlignment = .left) {
+    drawText(text, in: rect, font: font, color: color, alignment: alignment, lineBreakMode: .byTruncatingTail)
+}
+
+func drawText(
+    _ text: String,
+    in rect: NSRect,
+    font: NSFont,
+    color: NSColor,
+    alignment: NSTextAlignment = .left,
+    lineBreakMode: NSLineBreakMode
+) {
     let paragraphStyle = NSMutableParagraphStyle()
     paragraphStyle.alignment = alignment
-    paragraphStyle.lineBreakMode = .byTruncatingTail
+    paragraphStyle.lineBreakMode = lineBreakMode
     (text as NSString).draw(
         in: rect,
         withAttributes: [
@@ -98,12 +118,20 @@ func textWidth(_ text: String, font: NSFont) -> CGFloat {
     (text as NSString).size(withAttributes: [.font: font]).width
 }
 
+func displayCommittedText(_ text: String) -> String {
+    text.replacingOccurrences(of: "కదా? ", with: "కదా?\n")
+}
+
+func displayLines(_ text: String) -> [String] {
+    displayCommittedText(text).components(separatedBy: "\n")
+}
+
 let titleFont = NSFont.systemFont(ofSize: 34, weight: .bold)
 let bodyFont = NSFont.systemFont(ofSize: 22, weight: .regular)
-let teluguFont = NSFont(name: "Kohinoor Telugu", size: 44) ?? NSFont.systemFont(ofSize: 44, weight: .semibold)
+let teluguFont = NSFont(name: "Kohinoor Telugu", size: 40) ?? NSFont.systemFont(ofSize: 40, weight: .semibold)
 let teluguCandidateFont = NSFont(name: "Kohinoor Telugu", size: 30) ?? NSFont.systemFont(ofSize: 30, weight: .semibold)
 let romanFont = NSFont.monospacedSystemFont(ofSize: 34, weight: .regular)
-let romanSmallFont = NSFont.monospacedSystemFont(ofSize: 21, weight: .regular)
+let romanSmallFont = NSFont.monospacedSystemFont(ofSize: 19, weight: .regular)
 let labelFont = NSFont.systemFont(ofSize: 18, weight: .medium)
 
 var states: [FrameState] = []
@@ -121,6 +149,8 @@ for token in tokens {
                     committed: committed,
                     composing: composing,
                     candidate: token.telugu,
+                    candidates: token.candidates,
+                    selectedCandidateIndex: 0,
                     romanProgress: romanProgress,
                     showCandidates: false
                 )
@@ -128,16 +158,34 @@ for token in tokens {
         }
     }
 
-    for _ in 0..<10 {
+    for _ in 0..<(token.selectedCandidateIndex == 0 ? 10 : 8) {
         states.append(
             FrameState(
                 committed: committed,
                 composing: composing,
                 candidate: token.telugu,
+                candidates: token.candidates,
+                selectedCandidateIndex: 0,
                 romanProgress: romanProgress,
                 showCandidates: true
             )
         )
+    }
+
+    if token.selectedCandidateIndex != 0 {
+        for _ in 0..<16 {
+            states.append(
+                FrameState(
+                    committed: committed,
+                    composing: composing,
+                    candidate: token.telugu,
+                    candidates: token.candidates,
+                    selectedCandidateIndex: token.selectedCandidateIndex,
+                    romanProgress: romanProgress,
+                    showCandidates: true
+                )
+            )
+        }
     }
 
     committed += token.telugu + token.delimiter
@@ -149,6 +197,8 @@ for token in tokens {
                 committed: committed,
                 composing: "",
                 candidate: token.telugu,
+                candidates: token.candidates,
+                selectedCandidateIndex: token.selectedCandidateIndex,
                 romanProgress: romanProgress,
                 showCandidates: false
             )
@@ -162,6 +212,8 @@ for _ in 0..<48 {
             committed: teluguSentence,
             composing: "",
             candidate: "",
+            candidates: [],
+            selectedCandidateIndex: 0,
             romanProgress: romanSentence,
             showCandidates: false
         )
@@ -189,41 +241,61 @@ func renderFrame(_ state: FrameState, index: Int) throws {
 
     let textX: CGFloat = 178
     let textY: CGFloat = 338
-    drawText(state.committed, at: NSPoint(x: textX, y: textY), font: teluguFont, color: color(0x0F172A))
+    let lines = displayLines(state.committed)
+    let lineHeight: CGFloat = 58
+    for (lineIndex, line) in lines.enumerated() {
+        drawText(line, at: NSPoint(x: textX, y: textY - CGFloat(lineIndex) * lineHeight), font: teluguFont, color: color(0x0F172A))
+    }
 
-    let committedWidth = textWidth(state.committed, font: teluguFont)
+    let currentLineIndex = max(lines.count - 1, 0)
+    let currentLine = lines.last ?? ""
+    let committedWidth = textWidth(currentLine, font: teluguFont)
     let composingX = textX + committedWidth
+    let composingY = textY - CGFloat(currentLineIndex) * lineHeight
     if !state.composing.isEmpty {
-        drawText(state.composing, at: NSPoint(x: composingX, y: textY + 6), font: romanFont, color: color(0x2563EB))
+        drawText(state.composing, at: NSPoint(x: composingX, y: composingY + 6), font: romanFont, color: color(0x2563EB))
         color(0x2563EB).setStroke()
         let underline = NSBezierPath()
         underline.lineWidth = 3
-        underline.move(to: NSPoint(x: composingX, y: textY - 2))
-        underline.line(to: NSPoint(x: composingX + textWidth(state.composing, font: romanFont), y: textY - 2))
+        underline.move(to: NSPoint(x: composingX, y: composingY - 2))
+        underline.line(to: NSPoint(x: composingX + textWidth(state.composing, font: romanFont), y: composingY - 2))
         underline.stroke()
     }
 
     let caretX = composingX + (state.composing.isEmpty ? 0 : textWidth(state.composing, font: romanFont)) + 3
     if (index / 12) % 2 == 0 {
         color(0x0F172A).setFill()
-        NSRect(x: caretX, y: textY + 3, width: 3, height: 48).fill()
+        NSRect(x: caretX, y: composingY + 3, width: 3, height: 48).fill()
     }
 
     if state.showCandidates {
+        let candidates = state.candidates.isEmpty ? [state.candidate] : state.candidates
+        let rowHeight: CGFloat = 44
+        let rowGap: CGFloat = 6
+        let popupHeight = CGFloat(candidates.count) * (rowHeight + rowGap) + 52
         let popupX = min(max(composingX - 16, 172), 910)
-        drawRoundedRect(NSRect(x: popupX, y: 144, width: 250, height: 170), radius: 18, fill: color(0x111827))
-        drawRoundedRect(NSRect(x: popupX + 12, y: 250, width: 226, height: 48), radius: 10, fill: color(0x2563EB))
-        drawText("1", at: NSPoint(x: popupX + 28, y: 262), font: labelFont, color: color(0xFFFFFF))
-        drawText(state.candidate, in: NSRect(x: popupX + 58, y: 254, width: 170, height: 42), font: teluguCandidateFont, color: color(0xFFFFFF))
-        drawText(state.composing, in: NSRect(x: popupX + 28, y: 212, width: 196, height: 28), font: romanSmallFont, color: color(0xCBD5E1))
-        drawText("Space commits", at: NSPoint(x: popupX + 28, y: 174), font: labelFont, color: color(0x94A3B8))
+        let popupY = max(170, composingY - popupHeight - 12)
+        drawRoundedRect(NSRect(x: popupX, y: popupY, width: 270, height: popupHeight), radius: 18, fill: color(0x111827))
+
+        for (candidateIndex, candidate) in candidates.enumerated() {
+            let rowY = popupY + popupHeight - 18 - rowHeight - CGFloat(candidateIndex) * (rowHeight + rowGap)
+            let isSelected = candidateIndex == state.selectedCandidateIndex
+            if isSelected {
+                drawRoundedRect(NSRect(x: popupX + 12, y: rowY, width: 246, height: rowHeight), radius: 10, fill: color(0x2563EB))
+            }
+            let candidateColor = isSelected ? color(0xFFFFFF) : color(0xE5E7EB)
+            drawText("\(candidateIndex + 1)", at: NSPoint(x: popupX + 28, y: rowY + 10), font: labelFont, color: candidateColor)
+            drawText(candidate, in: NSRect(x: popupX + 58, y: rowY + 4, width: 184, height: 42), font: teluguCandidateFont, color: candidateColor)
+        }
+
+        drawText(state.composing, in: NSRect(x: popupX + 28, y: popupY + 14, width: 214, height: 28), font: romanSmallFont, color: color(0xCBD5E1))
     }
 
     drawText("Roman input", at: NSPoint(x: 180, y: 198), font: labelFont, color: color(0x64748B))
-    drawText(state.romanProgress, in: NSRect(x: 180, y: 158, width: 900, height: 34), font: romanSmallFont, color: color(0x0F172A))
+    drawText(state.romanProgress, in: NSRect(x: 180, y: 150, width: 900, height: 48), font: romanSmallFont, color: color(0x0F172A), lineBreakMode: .byWordWrapping)
 
     drawText("Final", at: NSPoint(x: 180, y: 118), font: labelFont, color: color(0x64748B))
-    drawText(teluguSentence, in: NSRect(x: 236, y: 107, width: 860, height: 42), font: NSFont(name: "Kohinoor Telugu", size: 26) ?? NSFont.systemFont(ofSize: 26), color: color(0x0F766E))
+    drawText(teluguSentence, in: NSRect(x: 236, y: 82, width: 860, height: 68), font: NSFont(name: "Kohinoor Telugu", size: 22) ?? NSFont.systemFont(ofSize: 22), color: color(0x0F766E), lineBreakMode: .byWordWrapping)
 
     image.unlockFocus()
 

@@ -32,6 +32,16 @@ public struct ConversationalPatternCandidateProvider: CandidateProvider {
         guard key.isEmpty == false else { return [] }
 
         var results: [Candidate] = []
+        if key == "kada" {
+            results.append(
+                Candidate(
+                    text: "కదా",
+                    roman: key,
+                    score: 292,
+                    source: "pattern:ambiguous-particle"
+                )
+            )
+        }
         if key.hasSuffix("ke") {
             let stemKey = String(key.dropLast(2))
             if let stem = Self.dativeEmphaticStems[stemKey] {

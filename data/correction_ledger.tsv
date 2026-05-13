@@ -49,3 +49,4 @@ C047	ichanu	ఇచ్చాను	candidate-ranking-feature	chaanu-gemination	ra
 C048	ichaanu	ఇచ్చాను	candidate-ranking-feature	chaanu-gemination	ranking-implemented	Bounded i+chaanu pattern should prefer ఇచ్చాను over literal ఇచాను.
 C049	icchanu	ఇచ్చాను	candidate-ranking-feature	chaanu-gemination	ranking-implemented	Bounded i+cchanu pattern should prefer ఇచ్చాను.
 C050	icchaanu	ఇచ్చాను	candidate-ranking-feature	chaanu-gemination	ranking-implemented	Bounded i+cchaanu pattern should prefer ఇచ్చాను.
+C051	kada	కద	candidate-ranking-feature	ambiguous-particle-order	ranking-implemented	kada can mean కద or కదా; rank కద first while keeping కదా second for explicit selection.
