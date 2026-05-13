@@ -3,7 +3,11 @@
 [![macOS 14+](https://img.shields.io/badge/macOS-14%2B-111827)](https://www.apple.com/macos/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-![Telugu Keyboard typing demo](docs/assets/typing-demo.svg)
+<video src="docs/assets/typing-demo.mp4" controls muted playsinline poster="docs/assets/typing-demo.svg"></video>
+
+[Watch the demo video](docs/assets/typing-demo.mp4)
+
+Demo sentence: `ela unnav? em chestunnav? bagundi kani ilaa kaadu.` -> `ఎలా ఉన్నావ్? ఏం చేస్తున్నావ్? బాగుంది కానీ ఇలా కాదు.`
 
 Telugu deserves Telugu script.
 
@@ -92,6 +96,7 @@ Useful commands:
 swift run telugu-keyboard-cli padaku thondara telugu
 swift run telugu-keyboard-smoke-tests
 swift run telugu-keyboard-quality-tests
+swift script/render_typing_demo.swift
 script/test_input_method_e2e.sh
 ```
 
