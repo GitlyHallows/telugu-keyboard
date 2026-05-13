@@ -45,11 +45,15 @@ let height = 720
 let fps = 24
 let root = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
 let frameDirectory = root.appendingPathComponent(".build/typing-demo-frames", isDirectory: true)
+let gifWorkDirectory = root.appendingPathComponent(".build/typing-demo-gif", isDirectory: true)
 let outputURL = root.appendingPathComponent("docs/assets/typing-demo.mp4")
+let gifURL = root.appendingPathComponent("docs/assets/typing-demo.gif")
 let fileManager = FileManager.default
 
 try? fileManager.removeItem(at: frameDirectory)
 try fileManager.createDirectory(at: frameDirectory, withIntermediateDirectories: true)
+try? fileManager.removeItem(at: gifWorkDirectory)
+try fileManager.createDirectory(at: gifWorkDirectory, withIntermediateDirectories: true)
 
 func color(_ hex: UInt32) -> NSColor {
     let red = CGFloat((hex >> 16) & 0xff) / 255
@@ -234,18 +238,26 @@ func renderFrame(_ state: FrameState, index: Int) throws {
     try pngData.write(to: frameURL)
 }
 
+func runFFmpeg(_ arguments: [String], label: String) throws {
+    let process = Process()
+    process.executableURL = URL(fileURLWithPath: "/opt/homebrew/bin/ffmpeg")
+    process.arguments = ["-y", "-hide_banner", "-loglevel", "error"] + arguments
+    try process.run()
+    process.waitUntilExit()
+
+    if process.terminationStatus != 0 {
+        throw NSError(domain: "TypingDemo", code: Int(process.terminationStatus), userInfo: [NSLocalizedDescriptionKey: "\(label) failed"])
+    }
+}
+
 for (index, state) in states.enumerated() {
     try renderFrame(state, index: index)
 }
 
 try? fileManager.removeItem(at: outputURL)
+try? fileManager.removeItem(at: gifURL)
 
-let process = Process()
-process.executableURL = URL(fileURLWithPath: "/opt/homebrew/bin/ffmpeg")
-process.arguments = [
-    "-y",
-    "-hide_banner",
-    "-loglevel", "error",
+try runFFmpeg([
     "-framerate", "\(fps)",
     "-i", frameDirectory.appendingPathComponent("frame_%04d.png").path,
     "-vf", "format=yuv420p",
@@ -254,13 +266,22 @@ process.arguments = [
     "-preset", "slow",
     "-crf", "28",
     outputURL.path,
-]
+], label: "MP4 render")
 
-try process.run()
-process.waitUntilExit()
+let paletteURL = gifWorkDirectory.appendingPathComponent("palette.png")
 
-if process.terminationStatus != 0 {
-    throw NSError(domain: "TypingDemo", code: Int(process.terminationStatus), userInfo: [NSLocalizedDescriptionKey: "ffmpeg failed"])
-}
+try runFFmpeg([
+    "-i", outputURL.path,
+    "-vf", "fps=12,scale=960:-1:flags=lanczos,palettegen=stats_mode=diff",
+    paletteURL.path,
+], label: "GIF palette render")
+
+try runFFmpeg([
+    "-i", outputURL.path,
+    "-i", paletteURL.path,
+    "-lavfi", "fps=12,scale=960:-1:flags=lanczos[x];[x][1:v]paletteuse=dither=bayer:bayer_scale=3:diff_mode=rectangle",
+    gifURL.path,
+], label: "GIF render")
 
 print("Rendered \(outputURL.path)")
+print("Rendered \(gifURL.path)")

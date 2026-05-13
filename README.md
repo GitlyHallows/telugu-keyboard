@@ -3,9 +3,9 @@
 [![macOS 14+](https://img.shields.io/badge/macOS-14%2B-111827)](https://www.apple.com/macos/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-<video src="docs/assets/typing-demo.mp4" controls muted playsinline poster="docs/assets/typing-demo.svg"></video>
+[![Telugu Keyboard typing demo](docs/assets/typing-demo.gif)](docs/assets/typing-demo.mp4)
 
-[Watch the demo video](docs/assets/typing-demo.mp4)
+[Watch the MP4 demo](docs/assets/typing-demo.mp4)
 
 Demo sentence: `ela unnav? em chestunnav? bagundi kani ilaa kaadu.` -> `ఎలా ఉన్నావ్? ఏం చేస్తున్నావ్? బాగుంది కానీ ఇలా కాదు.`
 
