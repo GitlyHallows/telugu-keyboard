@@ -5,8 +5,6 @@
 
 [![Telugu Keyboard typing demo](docs/assets/typing-demo.gif)](docs/assets/typing-demo.mp4)
 
-[Watch the MP4 demo](docs/assets/typing-demo.mp4)
-
 Demo sentence: `ela unnav? em chestunnav? bagundi kani ilaa kaadu.` -> `ఎలా ఉన్నావ్? ఏం చేస్తున్నావ్? బాగుంది కానీ ఇలా కాదు.`
 
 Telugu deserves Telugu script.
