@@ -5,8 +5,6 @@
 
 [![Telugu Keyboard typing demo](docs/assets/typing-demo.gif)](docs/assets/typing-demo.mp4)
 
-Demo sentence: `ela unnav? telusu kada? em chestunnav? poinaa sare parledu.` -> `ఎలా ఉన్నావ్? తెలుసు కదా? ఏం చేస్తున్నావ్? పోయినా సరే పర్లేదు.`
-
 Telugu deserves Telugu script.
 
 Many Telugu speakers type Telugu in English letters because laptop keyboards make it feel easier: `telusu`, `bagunnava`, `em chestunnav`. But Roman Telugu is not Telugu writing, and it is not good English either. The English-looking word `telusu` does not naturally carry the sound or dignity of `తెలుసు`; readers have to mentally translate it back into Telugu before it makes sense.
