@@ -51,3 +51,5 @@ C049	icchanu	ఇచ్చాను	candidate-ranking-feature	chaanu-gemination	r
 C050	icchaanu	ఇచ్చాను	candidate-ranking-feature	chaanu-gemination	ranking-implemented	Bounded i+cchaanu pattern should prefer ఇచ్చాను.
 C051	kada	కద	candidate-ranking-feature	ambiguous-particle-order	ranking-implemented	kada can mean కద or కదా; rank కద first while keeping కదా second for explicit selection.
 C052	emo	ఏమో	exact-common-word	none	exact-only	Common conversational word; exact row avoids incorrect rule-only ఎమొ.
+C053	telidu	తెలీదు	exact-common-word	negative-knowledge-spoken-form	exact-only	Common spoken spelling; keep teliyadu as తెలియదు.
+C054	teleedu	తెలీదు	exact-common-word	negative-knowledge-spoken-form	exact-only	Long-vowel Roman spelling for the same spoken form.

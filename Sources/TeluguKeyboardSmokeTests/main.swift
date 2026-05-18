@@ -33,6 +33,8 @@ expect(topCandidate(for: "enduku") == "ఎందుకు", "enduku should rank 
 expect(topCandidate(for: "avunu") == "అవును", "avunu should rank అవును first")
 expect(topCandidate(for: "em") == "ఏం", "em should rank ఏం first")
 expect(topCandidate(for: "emo") == "ఏమో", "emo should rank ఏమో first")
+expect(topCandidate(for: "telidu") == "తెలీదు", "telidu should rank తెలీదు first")
+expect(topCandidate(for: "teleedu") == "తెలీదు", "teleedu should rank తెలీదు first")
 expect(topCandidate(for: "nake") == "నాకే", "nake should rank నాకే first")
 expect(topCandidate(for: "naake") == "నాకే", "naake should rank నాకే first")
 expect(topCandidate(for: "neeke") == "నీకే", "neeke should rank నీకే first")

@@ -213,6 +213,8 @@ let requiredExamples: [String: String] = [
     "ela": "ఎలా",
     "em": "ఏం",
     "emo": "ఏమో",
+    "telidu": "తెలీదు",
+    "teleedu": "తెలీదు",
     "kada": "కద",
     "kooda": "కూడా",
     "koodaa": "కూడా",
