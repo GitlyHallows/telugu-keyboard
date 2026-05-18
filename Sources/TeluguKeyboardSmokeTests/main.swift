@@ -32,6 +32,7 @@ expect(topCandidate(for: "bagunnara") == "బాగున్నారా", "bagu
 expect(topCandidate(for: "enduku") == "ఎందుకు", "enduku should rank ఎందుకు first")
 expect(topCandidate(for: "avunu") == "అవును", "avunu should rank అవును first")
 expect(topCandidate(for: "em") == "ఏం", "em should rank ఏం first")
+expect(topCandidate(for: "emo") == "ఏమో", "emo should rank ఏమో first")
 expect(topCandidate(for: "nake") == "నాకే", "nake should rank నాకే first")
 expect(topCandidate(for: "naake") == "నాకే", "naake should rank నాకే first")
 expect(topCandidate(for: "neeke") == "నీకే", "neeke should rank నీకే first")
